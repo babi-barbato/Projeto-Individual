@@ -1,0 +1,47 @@
+/*Configuração DIV'S*/
+#divGeral{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#divVerde{
+    width: 100%;
+    color: white;
+    background-color: #163c21;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;  
+}
+.quizzes{
+    gap: 100px;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.quizzes div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+/*Configuração TAG H1 e P*/
+.divTexto p{
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+}
+.divVerde h1{
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/*Configuração BOTÕES*/

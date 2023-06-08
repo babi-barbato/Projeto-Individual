@@ -1,0 +1,92 @@
+/*Configuração DIV'S*/
+#divGeral{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#divVerde{
+    width: 80%;
+    background-color: #163c21;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;  
+}
+#divBranco{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #15291A;
+    width: 20%;
+    background-color: white;
+    height: 90vh;
+}
+.divTexto{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 50%;
+    text-align: center;
+    color: white;
+}
+
+/*Configuração TAG H1 e P*/
+.divTexto p{
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+}
+.divVerde h1{
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/*Configuração da TAG A*/
+.divTexto p a{
+    position: relative;
+    color: #18FB58;
+    text-decoration: none;
+}
+p a:hover::after{/*criei um elemento after (pseudo elemento)*/
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    height: 3px;
+    border-radius: 20px;
+    background-color: #18FB58;
+    animation: linhaClique forwards .4s; /*Chamo a animação*/
+    width: 100%;
+}
+@keyframes linhaClique {
+    from {/*a linha sai do tamanho 0*/
+        width: 0;
+    }
+    to {/*e vai para o tamanho de 100%*/
+      width: 100%;
+    }
+}
+
+/*Configuração BOTÕES*/
+#divVerde button{
+    transition: all 0.8s;
+    width: 35%;
+    height: 50px;
+    color: #15291A;
+    background-color: white;
+    border: 2px solid #15291A;
+    border-radius: 5px;
+    font-size: 25px;
+}
+#divVerde button:hover{
+    transform: scale(1.1);
+}
+#ftJogador img{
+    width: 200px;
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="quiz1.css">
+    <link rel="shortcut icon" href="../img/palmeirasIcon.ico" type="image/x-icon">
+    <title>Quiz - Você conhece o elenco Masculino?</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <img style="width: 60px;" src="../img/logo-palmeiras.png">
+            <li><a class="aPalmeiras" href="../index/index.html">Palmeiras</a></li>
+        </ul>
+        <ul>
+            <li><a href="../historia/historia.html">Histórias</a></li>
+            <li><a href="../times/timeMasc.html">Time Masculino</a></li>
+            <li><a href="../times/timeFemi.html">Time Feminino</a></li>
+            <li><a href="../quiz/quiz.html">Quizzes</a></li>
+            <li><a href="../titulos/titulos.html">Titulos</a></li>
+            <li><a href="../titulos/titulos.html">Feedback</a></li>
+        </ul>
+        <ul>
+            <button class="btnBranco">
+                <a href="">Cadastro</a>
+            </button>
+            <button class="btnVerde">
+                <a href="">Login</a>
+            </button>
+        </ul>
+    </nav>    
+
+    <div id="divGeral">
+
+        <div id="divVerde">
+            <div id="divInicio">
+                <div class="divTexto">
+                    <h1>Clique no botão abaixo para começar</h1>
+                </div>
+                <button onclick="jogar()">Jogar</button>
+            </div>
+
+            <div id="pergunta1" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-dudu.png">
+                <div>
+                    <button onclick="quest1(1)">Dudu</button>
+                    <button onclick="quest1(0)">Rony</button>
+                    <button onclick="quest1(0)">Endrick</button>
+                </div>
+            </div>
+            <div id="pergunta2" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-gabrielMenino.png">
+                <div>
+                    <button onclick="quest2(0)">Patrick de Paula</button>
+                    <button onclick="quest2(1)">Gabiel Menino</button>
+                    <button onclick="quest2(0)">Danilo</button>
+                </div>
+            </div>
+            <div id="pergunta3" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-weverton.png">
+                <div>
+                    <button onclick="quest3(0)">Marcelo Lomba</button>
+                    <button onclick="quest3(1)">Weverton</button>
+                    <button onclick="quest3(0)">Jailson</button>
+                </div>
+            </div>
+            <div id="pergunta4" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-veiga.png">
+                <div>
+                    <button onclick="quest4(0)">Zé Rafael</button>
+                    <button onclick="quest4(0)">Gustavo Scarpa</button>
+                    <button onclick="quest4(1)">Raphael Veiga</button>
+                </div>
+            </div>
+            <div id="pergunta5" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-gustavoGomez.png">
+                <div>
+                    <button onclick="quest5(0)">Marcos Rocha</button>
+                    <button onclick="quest5(0)">Luan</button>
+                    <button onclick="quest5(1)">Gustavo Gomez</button>
+                </div>
+            </div>
+            <div id="pergunta6" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-marcosRocha.png">
+                <div>
+                    <button onclick="quest6(0)">Mayke</button>
+                    <button onclick="quest6(1)">Marcos Rocha</button>
+                    <button onclick="quest6(0)">Vanderlan</button>
+                </div>
+            </div>
+            <div id="pergunta7" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-endrick.png">
+                <div>
+                    <button onclick="quest7(1)">Endrick</button>
+                    <button onclick="quest7(0)">Giovanni</button>
+                    <button onclick="quest7(0)">John John</button>
+                </div>
+            </div>
+            <div id="pergunta8" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-arthur.png">
+                <div>
+                    <button onclick="quest8(0)">Danilo</button>
+                    <button onclick="quest8(0)">Piquerez</button>
+                    <button onclick="quest8(1)">Arthur</button>
+                </div>
+            </div>
+            <div id="pergunta9" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-rony.png">
+                <div>
+                    <button onclick="quest9(0)">Tabata</button>
+                    <button onclick="quest9(0)">Dudu</button>
+                    <button onclick="quest9(1)">Rony</button>
+                </div>
+            </div>
+            <div id="pergunta10" class="divPergunta">
+                <h1>Qual o nome desse jogador?</h1>
+                <img src="../img/jogador-zeRafael.png">
+                <div>
+                    <button onclick="quest10(1)">Zé Rafael</button>
+                    <button onclick="quest10(0)">Gabriel Menino</button>
+                    <button onclick="quest10(0)">Luan</button>
+                </div>
+            </div>
+
+            <div id="divFinal">
+                <div id="respostas"></div>
+                <button onclick="recomecar()">Jogue Novamente</button>
+            </div>
+        
+        </div>
+        
+        <div id="divBranco">
+            
+        </div>
+    </div>
+    
+</body>
+</html>
+<script src="quiz1.js"></script>

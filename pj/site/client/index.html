@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/home/index.css">
+    <link rel="stylesheet" href="pages/style.css">
+    <link rel="shortcut icon" href="../img/palmeirasIcon.ico" type="image/x-icon">
+    <title>Home - Palmeiras</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <img style="width: 50px;" src="../img/logo-palmeiras.png">
+            <li><a class="aPalmeiras" href="../home/index.html">Palmeiras</a></li>
+        </ul>
+        <ul>
+            <li><a href="../historia/historia.html">Histórias</a></li>
+            <li><a href="pages/times/timeMasc.html">Time Masculino</a></li>
+            <li><a href="pages/times/timeFemi.html">Time Feminino</a></li>
+            <li><a href="pages/quiz/quiz.html">Quizzes</a></li>
+            <li><a href="pages/titulos/titulos.html">Titulos</a></li>
+            <li><a href="pages/titulos/titulos.html">Feedback</a></li>
+        </ul>
+        <ul>
+            <button class="btnBranco">
+                <a href="pages/cadastro/cadastro.html">Cadastro</a>
+            </button>
+            <button class="btnVerde">
+                <a href="pages/login/login.html">Login</a>
+            </button>
+        </ul>
+    </nav>    
+
+    <div id="divSlideShow">
+        <img id="ft1" src="img/banner1.png" alt="">
+        <img style="display: none;" id="ft2" src="img/banner2.png" alt="">
+        <img style="display: none;" id="ft3" src="img/banner4.png" alt="">
+        <img style="display: none;" id="ft4" src="img/banner3.png" alt="">
+    </div>
+    <div class="divBtnSlideShow">
+        <button id="button1" onclick="btn1()"></button>
+        <button id="button2" onclick="btn2()"></button>
+        <button id="button3" onclick="btn3()"></button>
+        <button id="button4" onclick="btn4()"></button>
+    </div>
+
+    <div id="divCaixas">
+        <div class="divQuiz">
+            <p>Você realmente conhece o Palmeiras?</p>
+            <button>Clique Já</button>
+            <p>Para realizar diversos quizzes sobre o assunto</p>
+        </div> 
+        <div class="divSobreMim">
+            <p>Por que um site sobre o Palmeiras?</p>
+            <button>Clique Aqui...</button>
+            <p>E descubra mais sobre essa história de amor e ódio</p>
+        </div>
+    </div>
+
+    <div class="divSubMenu">
+        <div class="divTitulos">
+            <a href="">
+                <p>Títulos</p>
+                <img style="width: 70px;" src="../img/trofeu.png" alt="">
+            </a>
+        </div>
+        <div class="divJunta">
+            <div class="divBranco"></div>
+            <div class="divEscudos">
+                <a href="">
+                    <img style="width: 70px;" src="../img/camisa.png" alt="">
+                    <p>Atuais Peças</p> 
+                </a>
+            </div>
+        </div>
+        <div class="divTitulos">
+            <a href="pages/escudos/escudos.html">
+                <p>Escudos</p>
+                <img style="width: 70px;" src="../img/escudo1914.png" alt="">
+            </a>
+        </div>
+    </div>
+
+    <div style="width: 100%;display: flex;justify-content: center;background-color: #3D6348">
+        <div id="divFeedback">
+            <div class="divTitulo">
+                <h1>FEEDBACK</h1>
+                <p>Venha responder um curto formulário nos contando como foi a experiencia de navegar na nossa página</p>
+            </div>
+            <form action="">
+
+                <div class="divNomeEmail">
+                    <input id="iptNome" type="text" placeholder="Nome Completo">
+                    <input id="iptEmail" type="text" placeholder="Email">
+                </div>
+                <div class="divComentarios">
+                    <textarea id="iptComentario" placeholder="Comentarios"></textarea>
+                </div>
+                <div class="divEnviar">
+                    <button type="button" onclick="feedback()">ENVIAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="banner bannerVermelho">
+        <div class="divMenssagem">Oops! Os campos não foram preenchidos incorretamente!</div>
+        <div class="divFecha" onclick="mensagemFechar('.bannerVermelho')">X</div>
+    </div>
+    <div class="bannerVerde banner">
+        <div class="divMenssagem">FeedBack enviado com sucesso!</div>
+        <div class="divFecha" onclick="mensagemFechar('.bannerVerde')">X</div>
+    </div>
+
+
+</body>
+</html>
+<script src="pages/home/index.js"></script>

@@ -1,0 +1,32 @@
+#divGeral{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding-top: 50px;
+}
+.divTitulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    color: #3DA159;
+    font-size: 25px;
+}
+.hr1{
+    width: 18%;
+    background-color: #3DA159;
+    height: 3px;
+    border: none;
+    margin-bottom: 4px;
+}
+.hr2{
+    width: 18%;
+    border: none;
+    background-color: #215F32;
+    height: 5px;
+}
+

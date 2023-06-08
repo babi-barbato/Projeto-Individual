@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="cadastro.css">
+    <title>Cadastro</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <img style="width: 50px;" src="../../img/logo-palmeiras.png">
+            <li><a class="aPalmeiras" href="../../index.html">Palmeiras</a></li>
+        </ul>
+        <ul>
+            <li><a href="../historia/historia.html">Histórias</a></li>
+            <li><a href="../times/timeMasc.html">Time Masculino</a></li>
+            <li><a href="../times/timeFemi.html">Time Feminino</a></li>
+            <li><a href="../quiz/quiz.html">Quizzes</a></li>
+            <li><a href="../titulos/titulos.html">Titulos</a></li>
+            <li><a href="../titulos/titulos.html">Feedback</a></li>
+        </ul>
+        <ul>
+            <button class="btnBranco">
+                <a href="cadastro.html">Cadastro</a>
+            </button>
+            <button class="btnVerde">
+                <a href="../login/login.html">Login</a>
+            </button>
+        </ul>
+    </nav>  
+    <div id="divGeral">
+        <div class="divEsquerda">
+            
+            <div id="divFormulario">
+                <h1>Crie uma conta</h1>
+                
+                <label for="iptNomeCompleto" class="divInput">
+                    <i class="bi bi-person"></i>
+                    <input type="text" id="iptNomeCompleto" placeholder="Digite seu Nome">
+                </label>
+                <label for="iptEmail" class="divInput">
+                    <i class="bi bi-envelope"></i>
+                    <input type="text" id="iptEmail" placeholder="Digite seu Email">
+                </label>
+                <label for="iptTelefone" class="divInput">
+                    <i class="bi bi-telephone"></i>
+                    <input type="text" id="iptTelefone" placeholder="(XX) XXXXX-XXXX">
+                </label>
+                <label for="iptSenha" class="divInput">
+                    <i id="senhaOlho"  class="bi bi-eye-slash"></i>
+                    <input type="password" id="iptSenha" onclick="verSenhas()" placeholder="Digite sua Senha">
+                </label>
+                <label for="iptConfSenha" class="divInput">
+                    <i id="confSenhaOlho" class="bi bi-eye-slash" onclick="verSenhasConf()" style="z-index: 3;"></i>
+                    <input type="password" id="iptConfSenha" placeholder="Confirme sua Senha">
+                </label>
+                <label class="wrapper">
+                    <button onclick="cadastrar()"><span>Cadastrar</span></button>
+                </label>
+                <label style="font-size: 15px;" for="">Já tem uma conta? Clique <a style="font-weight: bold;color: #253e2b;" href="">aqui</a> para logar</label>
+            </div>
+
+        </div>
+        <div class="divDireita">
+            <img style="width: 600px;" src="../../img/Football Goal (1).gif" alt="">
+
+        </div>
+    </div>
+    <div class="banner bannerVermelho" style="z-index:3">
+        <div class="divMenssagem">Oops! Os campos não foram preenchidos incorretamente!</div>
+        <div class="divFecha" onclick="mensagemFechar('.bannerVermelho')">X</div>
+    </div>
+    <div class="bannerVerde banner">
+        <div class="divMenssagem">FeedBack enviado com sucesso!</div>
+        <div class="divFecha" onclick="mensagemFechar('.bannerVerde')">X</div>
+    </div>
+</body>
+</html>
+<script>
+    
+    function cadastrar() {
+
+var nomeCompletoVar = iptNomeCompleto.value;
+var emailVar = iptEmail.value;
+var senhaVar = iptSenha.value;
+    
+
+if (nomeCompletoVar == '' || emailVar == '' || senhaVar == '') {
+    alert('Favor digitar os campos corretamente.');
+    return false;
+} else if (emailVar.indexOf('@') == -1) {
+    alert('Favor digitar o email corretamente.');
+    return false;
+} else if (senhaVar.length < 2) {
+    alert('Favor digitar uma senha com no mínimo oito caracteres.');
+    return false;
+}
+
+fetch(`/usuarios/cadastrar`,
+    {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            nomeCompletoServer: nomeCompletoVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+        })
+    }).then(function (resposta) {
+        console.log('resposta: ', resposta);
+        if (resposta.ok) {
+            alert('Um novo funcionário foi cadastrado com sucesso!');
+        } else {
+            console.log(resposta)
+            alert('Erro ao cadastrar funcionário.');
+        }
+    }).catch(function (resposta) {
+        console.log('erro: ', resposta);
+    });
+return false;
+
+}
+
+    //Função do olinho na confirmação de senha
+    var senhaConfAtiva = 0;
+    function verSenhasConf(){
+        if(senhaConfAtiva == 0){
+            confSenhaOlho.classList.add('bi-eye')
+            confSenhaOlho.classList.remove('bi-eye-slash')
+            iptConfSenha.type = "text";
+            senhaConfAtiva = 1;
+        }else{
+            confSenhaOlho.classList.add('bi-eye-slash')
+            confSenhaOlho.classList.remove('bi-eye')
+            iptConfSenha.type = "password";
+            senhaConfAtiva = 0;
+        }
+    }
+
+    //função do olinho na senha
+    var senhaAtiva = 0;
+    function verSenhas(){
+        if(senhaAtiva == 0){
+            senhaOlho.classList.add('bi-eye')
+            senhaOlho.classList.remove('bi-eye-slash')
+            iptSenha.type = "text";
+            senhaAtiva = 1;
+        }else{
+            senhaOlho.classList.add('bi-eye-slash')
+            senhaOlho.classList.remove('bi-eye')
+            iptSenha.type = "password";
+            senhaAtiva = 0;
+        }
+    }
+
+
+</script>

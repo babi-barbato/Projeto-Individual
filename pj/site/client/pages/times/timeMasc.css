@@ -1,0 +1,38 @@
+#divGeral{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.divJogador{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.divInfos{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+}
+.divImg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 40vh;
+}
+.divInfos h1::after{
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+    height: 3px;
+    border-radius: 20px;
+    background-color: #57e47f;
+    width: 100%;
+
+}

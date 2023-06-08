@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap');
+
+*{font-family: 'Josefin Sans', sans-serif;}
+
+/*SETAS
+nth-chil(odd) pego os elemento impares
+nth-child(even) pego os elementos pares
+*/
+#timeline .caixa:nth-child(odd) .divCabeca::after, 
+#timeline .caixa:nth-child(even) .divCabeca::after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+}
+
+/*BOLINHAS*/
+.esquerda .divCabeca::before, .direita .divCabeca::before {
+    position: absolute;
+    content: "";
+    width: 9px;
+    height: 9px;
+    background-color: #bdbdbd;
+    border-radius: 9px;
+    box-shadow: 0px 0px 2px 8px #f7f7f7;
+}
+
+/*LINHA DO MEIO*/
+.divTudo::after {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    height: 390vh;
+    border-left: 1px solid rgba(191, 191, 191, 0.4);
+}
+
+/*Cores*/
+.titulo-caixa {
+    background-color: #1D4F2B;
+}
+.divCabeca::after {
+    border-color: #1D4F2B;
+}
+
+/*geral*/
+#timeline .divTudo {
+    display: flex;
+    flex-flow: column wrap;
+    width: 1170px;
+    height: auto;
+    margin: 0 auto;
+}
+
+/*caixa*/
+.caixa {
+    width: 350px;
+    height: 300px;
+    margin: 90px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+
+
+/*esquerda*/
+.esquerda .divCabeca::after {
+    border-left-width: 15px;
+    border-left-style: solid;
+    left: 100%;
+}
+.esquerda .divCabeca::before {
+    left: 430px;
+}
+
+/*direita*/
+    .direita .divCabeca::after {
+        border-right-width: 15px;
+        border-right-style: solid;
+        right: 100%;
+}
+    .direita .divCabeca::before {
+        right: 430px;
+}
+
+/*Cabeça msm (precisa da position relative para o absolute funcionar)*/
+.divCabeca {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 400;
+}
+
+/*div que tem o número na ponta*/
+.divNumero {
+    display: inline;
+    float: left;
+    margin: 15px;
+    padding: 10px;
+    font-size: 35px;
+    line-height: 35px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.17);
+}
+
+/*div que tem o texto e img*/
+.texto{
+    background: #fff;
+    border: 1px solid rgba(191, 191, 191, 0.4);
+    border-top: 0;
+    padding: 15px;
+    height: 205px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.direita{
+    margin-left: 670px;
+}
+.esquerda{
+    margin-left: 151px;
+}
+
+.ptext{
+    display: none;
+}
+
+.caixa:hover .ptext{
+    display: block;
+}
+.caixa:hover img{
+    width: 100px;
+    transition: 400ms linear;
+}
+.caixa img{
+    width: 200px;
+    transition: 400ms linear;
+}

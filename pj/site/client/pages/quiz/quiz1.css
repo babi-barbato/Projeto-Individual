@@ -1,0 +1,121 @@
+/*Configuração DIV'S*/
+#divGeral{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#divVerde{
+    width: 80%;
+    color: white;
+    background-color: #163c21;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;  
+}
+#divBranco{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #15291A;
+    width: 20%;
+    background-color: white;
+    height: 90vh;
+}
+.divTexto{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 50%;
+    text-align: center;
+    color: white;
+}
+#divInicio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+.divPergunta{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    color: white;
+    width: 100%;
+}
+.divPergunta img{
+    width: 200px;
+}
+.divPergunta div{
+    display: flex;
+    gap: 10px;
+}
+#divFinal{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+    font-size: 30px;
+}
+
+/*Configuração TAG H1 e P*/
+.divTexto p{
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+}
+.divVerde h1{
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/*Configuração BOTÕES*/
+#divInicio button{
+    transition: all 0.5s;
+    width: 35%;
+    height: 50px;
+    color: #15291A;
+    background-color: white;
+    border: 2px solid #15291A;
+    border-radius: 5px;
+    font-size: 25px;
+}
+#divInicio button:hover, #divFinal button:hover{
+    transform: scale(1.1);
+}
+.divPergunta button{
+    transition: all 0.5s;
+    width: 200px;
+    height: 50px;
+    color: #15291A;
+    background-color: white;
+    border: 2px solid #15291A;
+    border-radius: 5px;
+    font-size: 25px;
+}
+.divPergunta button:hover{
+    background-color: #15291A;
+    color: white;
+}
+#divFinal button{
+    transition: all 0.5s;
+    width: 300px;
+    height: 50px;
+    color: #15291A;
+    background-color: white;
+    border: 2px solid #15291A;
+    border-radius: 5px;
+    font-size: 25px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="sorteio.css">
+    <link rel="shortcut icon" href="../img/palmeirasIcon.ico" type="image/x-icon">
+    <title>Qual Jogador você seria?</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <img style="width: 60px;" src="../img/logo-palmeiras.png">
+            <li><a class="aPalmeiras" href="../index/index.html">Palmeiras</a></li>
+        </ul>
+        <ul>
+            <li><a href="../historia/historia.html">Histórias</a></li>
+            <li><a href="../times/timeMasc.html">Time Masculino</a></li>
+            <li><a href="../times/timeFemi.html">Time Feminino</a></li>
+            <li><a href="../quiz/quiz.html">Quizzes</a></li>
+            <li><a href="../titulos/titulos.html">Titulos</a></li>
+            <li><a href="../titulos/titulos.html">Feedback</a></li>
+        </ul>
+        <ul>
+            <button class="btnBranco">
+                <a href="">Cadastro</a>
+            </button>
+            <button class="btnVerde">
+                <a href="">Login</a>
+            </button>
+        </ul>
+    </nav>    
+
+    <div id="divGeral">
+
+        <div id="divVerde">
+            <div class="divTexto">
+                <h1>Clique no botão ''sortear'' e descubra quem você seria no Palmeiras</h1>
+            </div>
+            <img id="gifCarrega" style="width:200px;height: 200px;display: none;" src="../img/carregando.gif">
+            <div id="ftJogador" class="divFoto">
+                <br>
+                <img style="width: 220px;" src="../img/interrogacao.png" alt="">
+            </div>
+            <div id="divJogador" class="divTexto">
+
+            </div>
+            <button onclick="sorteio()">Sortear</button>
+        </div>
+        
+        <div id="divBranco">
+            
+        </div>
+    </div>
+    
+</body>
+</html>
+<script src="sorteio.js"></script>

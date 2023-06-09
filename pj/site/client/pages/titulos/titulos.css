@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+#divGeral{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #bbbbbb;
+}
+
+.divTitulo{
+    margin-top: 50px;
+    width: 90%;
+    height: 300px;
+    color: #1d4f2b;
+}
+
+.unico{
+    /* background-color: #94cea4; */
+    width: 32%;
+    height: 200px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divTexto{
+    width: 60%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    flex-direction: column;
+    height: 100%;
+}
+
+.divLinha{
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.divTitulo>h1{
+    position: relative;
+}
+h1::after{
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #1d4f2b;
+}
+
+h2{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-family: 'Fjalla One', sans-serif;
+}
+label{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
+}

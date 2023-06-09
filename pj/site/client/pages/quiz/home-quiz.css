@@ -8,7 +8,7 @@
 }
 #divVerde{
     width: 100%;
-    color: white;
+    color: aliceblue;
     background-color: #163c21;
     height: 90vh;
     display: flex;
@@ -16,6 +16,18 @@
     align-items: center;
     justify-content: center;
     gap: 30px;  
+}
+.divQuiz{
+    width: 500px;
+    height: 250px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    background-size: cover;
+    border-radius: 15px;
 }
 .quizzes{
     gap: 100px;
@@ -25,7 +37,7 @@
     justify-content: center;
     flex-direction: column;
 }
-.quizzes div{
+.quizzes > div{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -37,11 +49,45 @@
     margin: 0;
     padding: 0;
 }
-.divVerde h1{
-    font-size: 25px;
-    margin: 0;
-    padding: 0;
-    color: white;
-}
 
-/*Configuração BOTÕES*/
+/*Configuração BOTÕES*/  
+  .button{
+    position:relative;
+    display:inline-block;
+    margin:20px;
+  }
+  
+  .button a{
+    color:white;
+    font-family:Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:36px;
+    text-align: center;
+    text-decoration:none;
+    background-color:#1d5e31;
+    display:block;
+    position:relative;
+    padding:20px 40px;
+    text-shadow: 0px 1px 0px #000;
+    box-shadow:inset 0 1px 0 #cff8c2, 0 10px 0 #03340a;
+    border-radius: 5px;
+  }
+  
+  .button a:active{
+    top:10px;
+    background-color:#03340a;
+    box-shadow:inset 0 1px 0 #d3ffc4, inset 0 -3px 0 #03340a;
+  }
+  
+  .button:after{
+    content:"";
+    height:100%;
+    width:100%;
+    padding:4px;
+    position: absolute;
+    bottom:-15px;
+    left:-4px;
+    z-index:-1;
+    background-color: black;
+    border-radius: 5px;
+  }

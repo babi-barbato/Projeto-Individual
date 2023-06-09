@@ -16,32 +16,12 @@ router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
 
-router.post("/cadastrarEmpresa", function (req, res) {
-    usuarioController.cadastrarEmpresa(req, res);
-})
-router.post("/cadastrarSala", function (req, res) {
-    usuarioController.cadastrarSala(req, res);
-})
-
-router.post("/registrarFunc", function (req, res) {
-    usuarioController.registrarFunc(req, res);
-})
-
-router.post("/alterarSenha", function (req, res) {
-    usuarioController.alterarSenha(req, res);
-})
-
 router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
-router.post("/captarSalas", function (req, res) {
-    usuarioController.captarSalas(req, res);
-});
-router.post("/captarEndereco", function (req, res) {
-    usuarioController.captarEndereco(req, res);
-});
-router.post("/atualizarAnalytics", function (req, res) {
-    usuarioController.atualizarAnalytics(req, res);
+
+router.post("/ordemJogadores", function (req, res) {
+    usuarioController.ordemJogadores(req, res);
 });
 
 module.exports = router;

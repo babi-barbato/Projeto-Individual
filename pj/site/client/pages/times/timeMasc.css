@@ -1,30 +1,100 @@
-#divGeral{
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400&display=swap');
+#divGeral{/*Div que pega todas as divs dos jogadores*/
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
-.divJogador{
-    width: 90%;
+
+body{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
-.divInfos{
-    width: 70%;
+
+#divOrdem{/*Div dos botões para filtrar*/
+    margin-top: 30px;
+    width: 83%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.divJogador{/*Div que guarda TUDO do jogador*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    height: 400px;
+    justify-content: center;
+    gap: 20px;
+}
+.divJogadorMuda{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    height: 400px;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: row-reverse;
+}
+
+.divInfos{/*Div onde guarda tudo do jogador da parte da direita(tudo do jogador menos a img)*/
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-self: center;
     justify-content: center;
+    height: 100%;
 }
-.divImg{
+
+.divImg{/*Div que guarda a imagem*/
     display: flex;
     align-items: center;
     justify-content: center;
     width: 30%;
-    height: 40vh;
+    height: auto;
+    overflow: hidden;
+    border-radius: 15px;
 }
+
+textarea {/*Lugar onde fica os textos das informações*/
+    margin-top: 15px;
+    border: none;
+    resize: none;
+    background-color: white;
+    color: black;
+    font-size: 17px;
+    width: 100%;
+    height: 120px;
+}
+
+.divDados{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+.divDados div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.divDados img{
+    width: 100px;
+}
+
+/*Configuração dos textos*/
 .divInfos h1::after{
     content: "";
     position: absolute;
@@ -32,7 +102,39 @@
     right: 0;
     height: 3px;
     border-radius: 20px;
-    background-color: #57e47f;
+    /* background-color: #57e47f; */
+    background-color: #1a943c;
     width: 100%;
+    
+}
+.divInfos h1{
+    position: relative;
+}
+h3{
+    color: #1a943c;
+}
+h2{
+    font-weight: 100;
+    font-family: 'Josefin Sans';
+}
 
+/*Configurações botões*/
+.botaoVerde{
+    background-color: #172F1E;
+    color: white;
+    border: 3px solid #172F1E;
+    width: 120px;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 30px;
+}
+
+.botaoBranco{
+    background-color: white;
+    color: #172F1E;
+    width: 120px;
+    border: 3px solid #172F1E;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 30px;
 }

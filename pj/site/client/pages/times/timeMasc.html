@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="timeMasc.css">
     <title>Login</title>
 </head>
+
 <body>
     <nav>
         <ul>
@@ -30,19 +32,100 @@
                 <a href="../login/login.html">Login</a>
             </button>
         </ul>
-    </nav>  
-    <div id="divGeral">
-
-        <div class="divJogador">
-            <div class="divImg">
-                <img height="100%" src="../img/jogador-rony.png" alt="">
-            </div>
-            <div class="divInfos">
-                <h3>Atacante</h3>
-                <h1>Rony Rústico</h1>
-            </div>
-        </div>
-
+    </nav>
+    <div id="divOrdem">
+        <h1>Ordenar por:</h1>
+        <button class="botaoVerde" onclick="ordemJogadores('nomeJogador')">Nome</button>
+        <button class="botaoBranco" onclick="ordemJogadores('nomeJogador')">Nome</button>
+        <button class="botaoBranco" onclick="ordemJogadores('altura')">Altura</button>
+        <button class="botaoBranco" onclick="ordemJogadores('idJogador')">Posicao</button>
     </div>
+    <div id="divGeral"></div>
 </body>
+
 </html>
+<script>
+    var verifica = 1;
+    var classe = '';
+
+    ordemJogadores('idJogador');
+
+    //Essa função arruma os jogadores por nome
+    function ordemJogadores(tipo) {
+        var sexoVar = 'M';
+
+        fetch("/usuarios/ordemJogadores", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                sexoServer: sexoVar,
+                tipoServer: tipo,
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO JOGADOR()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    verifica = 1;
+                    divGeral.innerHTML = '';
+                    
+                    for (var i = 0; i < json.length; i++) {
+                        if (verifica == 0) {
+                            classe = 'divJogadorMuda';
+                            verifica = 1;
+                        } else {
+                            classe = 'divJogador';
+                            verifica = 0;
+                        }
+                        divGeral.innerHTML += `
+                        <div class="${classe}">
+                            <div class="divImg">
+                                <img style='height: 350px;width: 350px;' src="../../img/times/${json[i].imagem}" alt="">
+                            </div>
+                            <div class="divInfos">
+                                <h3>${json[i].posicao}</h3>
+                                <h1>${json[i].nomeJogador}</h1>
+                                <div>
+                                    <textarea disabled>${json[i].texto}</textarea>
+                                </div>
+                                <div class='divDados'>
+                                    <div>
+                                        <img src='../../img/chuteira.png'>
+                                        <h2>${json[i].perna}</h2>
+                                    </div>
+                                    <div>
+                                        <img src='../../img/tamanho.png'>
+                                        <h2>${json[i].altura} m</h2>
+                                    </div>
+                                    <div>
+                                        <img src='../../img/camisa.png'>
+                                        <h2>N° ${json[i].numero}</h2>
+                                    </div>
+                                </div>   
+                            </div>
+                        </div>
+                        <hr style='width:95%;heigth:30px'>
+                        `;
+                    }
+                });
+
+            } else {
+                alert("Sem Jogadores inválido.")
+                console.log("Houve um erro ao achar jogadores!");
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    } 
+
+</script>

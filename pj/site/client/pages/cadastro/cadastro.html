@@ -86,6 +86,7 @@
 var nomeCompletoVar = iptNomeCompleto.value;
 var emailVar = iptEmail.value;
 var senhaVar = iptSenha.value;
+var telefoneVar = iptTelefone.value;
     
 
 if (nomeCompletoVar == '' || emailVar == '' || senhaVar == '') {
@@ -108,6 +109,7 @@ fetch(`/usuarios/cadastrar`,
         body: JSON.stringify({
             nomeCompletoServer: nomeCompletoVar,
             emailServer: emailVar,
+            telefoneServer: telefoneVar,
             senhaServer: senhaVar,
         })
     }).then(function (resposta) {

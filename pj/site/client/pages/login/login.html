@@ -47,7 +47,7 @@
                     <input type="password" id="iptSenha" onclick="verSenhas()" placeholder="Digite sua Senha">
                 </label>
                 <label class="wrapper">
-                    <button style="display: flex; align-items: center;justify-content: center;gap: 20px;">
+                    <button style="display: flex; align-items: center;justify-content: center;gap: 20px;" onclick="entrar()">
                         <span>Logar</span>
                         <i class="bi bi-arrow-right-circle"></i>
                     </button>
@@ -57,7 +57,7 @@
 
         </div>
         <div class="divDireita">
-            <img style="width: 600px;" src="../../img/Football Goal (1).gif" alt="">
+            <img style="width: 600px;" src="../../img/Soccer.gif" alt="">
 
         </div>
     </div>
@@ -72,26 +72,73 @@
 </body>
 </html>
 <script>
-    var nome = iptNome.value;
-    var email = iptEmail.value;
-    var telefone = iptTelefone.value;
-    var senha = iptSenha.value;
-    var confSenha = iptConfSenha.value;
+    function entrar() {
+        var emailVar = iptEmail.value;
+        var senhaVar = iptSenha.value;
 
-    //Função do olinho na confirmação de senha
-    var senhaConfAtiva = 0;
-    function verSenhasConf(){
-        if(senhaConfAtiva == 0){
-            confSenhaOlho.classList.add('bi-eye')
-            confSenhaOlho.classList.remove('bi-eye-slash')
-            iptConfSenha.type = "text";
-            senhaConfAtiva = 1;
-        }else{
-            confSenhaOlho.classList.add('bi-eye-slash')
-            confSenhaOlho.classList.remove('bi-eye')
-            iptConfSenha.type = "password";
-            senhaConfAtiva = 0;
+        if (emailVar.indexOf('@') == -1) {
+            alert('Insira um e-mail correto');
+            return false;
+        } 
+        if (senhaVar == '') {
+            alert('Insira uma senha correta');
+            return false;
         }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.ID_USUARIO = json.idUser;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    // sessionStorage.SENHA_USUARIO = json.senha;
+                    // sessionStorage.ADM = json.administrador;
+                    // sessionStorage.EMPRESA_USUARIO = json.fkEmpresa;
+                    
+
+                    // if (sessionStorage.EMPRESA_USUARIO != '12.345.678/9012-34') {
+                    //     setTimeout(function () {
+                    //         window.alert(`Seja bem-vindo(a), ${sessionStorage.NOME_USUARIO}!`)
+                    //         window.location = "../dashboard/dashboard.html";
+                    //     }, 1000);
+                    // } else {
+                    //     setTimeout(function () {
+                    //         window.alert(`Bem-vindo(a) de volta, ${sessionStorage.NOME_USUARIO}!`)
+                    //     }, 1000);
+                    // }
+                    
+                    window.location = "../cadastro/cadastro.html";
+                });
+
+            } else {
+                alert("Usuário inválido.")
+                console.log("Houve um erro ao tentar realizar o login!");
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
 
     //função do olinho na senha

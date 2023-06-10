@@ -74,7 +74,7 @@
         <div class="divMenssagem">Oops! Os campos não foram preenchidos incorretamente!</div>
         <div class="divFecha" onclick="mensagemFechar('.bannerVermelho')">X</div>
     </div>
-    <div class="bannerVerde banner">
+    <div class="bannerVerde banner" style="z-index:3">
         <div class="divMenssagem">FeedBack enviado com sucesso!</div>
         <div class="divFecha" onclick="mensagemFechar('.bannerVerde')">X</div>
     </div>
@@ -91,13 +91,10 @@ var telefoneVar = iptTelefone.value;
     
 
 if (nomeCompletoVar == '' || emailVar == '' || senhaVar == '') {
-    alert('Favor digitar os campos corretamente.');
+    mensagemAbrir('.bannerVermelho')
     return false;
 } else if (emailVar.indexOf('@') == -1) {
-    alert('Favor digitar o email corretamente.');
-    return false;
-} else if (senhaVar.length < 2) {
-    alert('Favor digitar uma senha com no mínimo oito caracteres.');
+    mensagemAbrir('.bannerVermelho')
     return false;
 }
 
@@ -116,7 +113,12 @@ fetch(`/usuarios/cadastrar`,
     }).then(function (resposta) {
         console.log('resposta: ', resposta);
         if (resposta.ok) {
-            alert('Um novo funcionário foi cadastrado com sucesso!');
+            mensagemAbrir('.bannerVerde')
+                iptEmail.value = "";
+                iptNomeCompleto.value = "";
+                iptSenha.value = "";
+                iptConfSenha.value = "";
+                iptTelefone.value = "";
         } else {
             console.log(resposta)
             alert('Erro ao cadastrar funcionário.');
@@ -126,6 +128,16 @@ fetch(`/usuarios/cadastrar`,
     });
 return false;
 
+}
+
+function mensagemAbrir(classEscolha) {
+    var banner = document.querySelector(classEscolha);
+    banner.classList.add("visible");
+}
+
+function mensagemFechar(classEscolha) {
+    var banner = document.querySelector(classEscolha);
+    banner.classList.remove("visible");
 }
 
     //Função do olinho na confirmação de senha

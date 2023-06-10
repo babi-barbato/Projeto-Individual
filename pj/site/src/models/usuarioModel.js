@@ -50,9 +50,34 @@ function cadastrar(nome, email,telefone, senha) {
     return database.executar(instrucao);
 }
 
+function feedback(nomeFeedback, emailFeedback, comentario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n funtion Feedback():", nomeFeedback, emailFeedback, comentario);
+    
+    var instrucao = `
+        INSERT INTO feedback (idFeedback, nomeFeedback, emailFeedback, comentario) VALUES (NULL, '${nomeFeedback}', '${emailFeedback}', '${comentario}');
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function mudarSenha(senha, id, tipo) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n funtion MudarSenha():", senha, id);
+    
+    var instrucao = `
+        UPDATE usuario SET senha = '${senha}' WHERE idUser = ${id};
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
     ordemJogadores,
+    feedback,
+    mudarSenha,
 };

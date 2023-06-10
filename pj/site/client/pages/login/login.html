@@ -66,23 +66,29 @@
         <div class="divMenssagem">Oops! Os campos não foram preenchidos incorretamente!</div>
         <div class="divFecha" onclick="mensagemFechar('.bannerVermelho')">X</div>
     </div>
-    <div class="bannerVerde banner">
-        <div class="divMenssagem">FeedBack enviado com sucesso!</div>
-        <div class="divFecha" onclick="mensagemFechar('.bannerVerde')">X</div>
-    </div>
 </body>
 </html>
 <script>
+    function mensagemAbrir(classEscolha) {
+        var banner = document.querySelector(classEscolha);
+        banner.classList.add("visible");
+    }
+
+    function mensagemFechar(classEscolha) {
+        var banner = document.querySelector(classEscolha);
+        banner.classList.remove("visible");
+    }
+
     function entrar() {
         var emailVar = iptEmail.value;
         var senhaVar = iptSenha.value;
 
         if (emailVar.indexOf('@') == -1) {
-            alert('Insira um e-mail correto');
+            mensagemAbrir('.bannerVermelho')
             return false;
         } 
         if (senhaVar == '') {
-            alert('Insira uma senha correta');
+            mensagemAbrir('.bannerVermelho')
             return false;
         }
 
@@ -107,7 +113,6 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-
                     sessionStorage.ID_USUARIO = json.idUser;
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
@@ -115,21 +120,23 @@
                     // sessionStorage.ADM = json.administrador;
                     // sessionStorage.EMPRESA_USUARIO = json.fkEmpresa;
                     
-
+                    
                     // if (sessionStorage.EMPRESA_USUARIO != '12.345.678/9012-34') {
                     //     setTimeout(function () {
                     //         window.alert(`Seja bem-vindo(a), ${sessionStorage.NOME_USUARIO}!`)
                     //         window.location = "../dashboard/dashboard.html";
                     //     }, 1000);
                     // } else {
-                    //     setTimeout(function () {
-                    //         window.alert(`Bem-vindo(a) de volta, ${sessionStorage.NOME_USUARIO}!`)
-                    //     }, 1000);
-                    // }
-                    
-                    window.location = "../cadastro/cadastro.html";
+                        //     setTimeout(function () {
+                            //         window.alert(`Bem-vindo(a) de volta, ${sessionStorage.NOME_USUARIO}!`)
+                            //     }, 1000);
+                            // }
+                            
+                            
+                    alert(`Seja Bem-Vindo: ${sessionStorage.NOME_USUARIO}!`);
+                    window.location = "../pessoal/pessoal.html";
                 });
-
+            
             } else {
                 alert("Usuário inválido.")
                 console.log("Houve um erro ao tentar realizar o login!");

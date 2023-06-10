@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="pessoal.css">
+    <link rel="shortcut icon" href="../../img/palmeirasIcon.ico" type="image/x-icon">
+    <title>Pessoal</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <ul>
+            <li style="display: flex; justify-content: space-between;">
+                <div style="display: flex; align-items: center;">
+                    <button class="btnUm"><i class="bi bi-person-circle"></i></button>
+                    <p>Logado</p>
+                </div>
+                <button class="btnUm" id="toggleBtn"><i class="bi bi-list"></i></button>
+            </li>
+            <li>
+                <hr>
+            </li>
+            <li><a href="../pessoal/pessoal.html">Pessoal</a></li>
+            <li><a href="../favorito/favorito.html">Jogador Favorito</a></li>
+            <li><a href="../dados/dados.html">Dados Gerais</a></li>
+            <li><a href="../jogos/jogos.html">Jogos</a></li>
+            <li></li>
+            <li></li>
+            <li><a href="../login/login.html">Sair</a></li>
+        </ul>
+    </div>
+    <div class="divFormularios" style="flex-direction: column;">
+        <div style="width: 80%;color: #176a0f;">
+            <h1>Informações Pessoais </h1>
+            <hr>
+            <p style="margin-top: 10px;">Aqui você pode alterar sua senha e seu email de login.</p>
+        </div>
+    
+        <div id="a" class="divFormularios">
+            <div class="divForms">
+                <div class="divTituloForm">
+                    <label>Mudar Senha</label>
+                    <i class="bi bi-key-fill"></i>
+                </div>
+                <div class="divInputs">
+                    <label> Nova Senha:</label>
+                    <input type="text" id="iptNovaSenha">
+                    <label>Confirme sua nova Senha:</label>
+                    <input type="text" id="iptConfNovaSenha">
+                    <button onclick="mudarSenha()" class="mudar">Mudar</button>
+                </div>
+            </div>
+            <div  class="divForms">
+                <div class="divTituloForm">
+                    <label>Informações Pessoais</label>
+                    <i class="bi bi-envelope-fill"></i>
+                </div>
+                <div class="divInputs">
+                    <label>Novo Email:</label>
+                    <input type="text" id="iptNovoEmail">
+                    <label>Confirme seu novo Email:</label>
+                    <input type="text" id="iptConfNovoEmail">
+                    <button class="mudar">Mudar</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../menuLateral.js"></script>
+<script>
+function mudarSenha(){
+    var senha = iptNovaSenha.value;
+    var confSenha = iptConfNovaSenha.value;
+
+    if(senha == '' || confSenha == ''){
+        alert("Preencha todos os campos")
+        return false
+    }else if(senha != confSenha){
+        alert("Senhas devem ser iguais")
+        return false
+    }
+
+    fetch(`/usuarios/mudarSenha`,
+    {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            senhaServer: senha,
+            idServer: sessionStorage.ID_USUARIO,
+        })
+    }).then(function (resposta) {
+        console.log('resposta: ', resposta);
+        if (resposta.ok) {
+
+           alert("Senha mudada com sucesso");
+
+        } else {
+            console.log(resposta)
+            alert('Erro ao mudar senha.');
+        }
+    }).catch(function (resposta) {
+        console.log('erro: ', resposta);
+    });
+return false;
+
+}
+
+function mensagemAbrir(classEscolha) {
+        var banner = document.querySelector(classEscolha);
+        banner.classList.add("visible");
+    }
+
+    function mensagemFechar(classEscolha) {
+        var banner = document.querySelector(classEscolha);
+        banner.classList.remove("visible");
+    }
+</script>

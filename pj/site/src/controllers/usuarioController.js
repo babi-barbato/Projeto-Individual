@@ -38,14 +38,10 @@ function entrar(req, res) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
 
-                    // if (resultado.length == 1) {
-                    //     console.log(resultado);
-                    //     res.json(resultado[0]);
-                    // } else if (resultado.length == 0) {
-                    //     res.status(403).send("Email e/ou senha inválido(s)");
-                    // } else {
-                    //     res.status(403).send("Mais de um usuário com o mesmo login e senha!");
-                    // }
+                    if (resultado.length == 1) {
+                        console.log(resultado);
+                        res.json(resultado[0]);
+                    } 
                 }
             ).catch(
                 function (erro) {
@@ -117,10 +113,70 @@ function ordemJogadores(req, res) {
     }
 }
 
+function feedback(req, res) {
+    var nomeFeedback = req.body.nomeFeedbackServer;
+    var emailFeedback = req.body.emailFeedbackServer;
+    var comentario = req.body.comentarioServer;
+
+    if (nomeFeedback == undefined) {
+        res.status(400).send("NOME TA INDEFINIDO!");
+    }else if (emailFeedback == undefined) {
+        res.status(400).send("EMAIL TA INDEFINIDO!");
+    }else if (comentario == undefined) {
+        res.status(400).send("COMENTARIO TA INDEFINIDO!");
+    } else {
+
+        usuarioModel.feedback(nomeFeedback, emailFeedback, comentario)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao ordenar por nome: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function mudarSenha(req, res) {
+    var senha = req.body.senhaServer;
+    var id = req.body.idServer;
+
+    if (senha == undefined) {
+        res.status(400).send("NOME TA INDEFINIDO!");
+    }else if (id == undefined) {
+        res.status(400).send("EMAIL TA INDEFINIDO!");
+    } else {
+
+        usuarioModel.mudarSenha(senha,id)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao mudar senha: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
     testar,
     ordemJogadores,
+    feedback,
+    mudarSenha,
 }

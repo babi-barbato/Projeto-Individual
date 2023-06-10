@@ -23,4 +23,14 @@ router.post("/ordemJogadores", function (req, res) {
     usuarioController.ordemJogadores(req, res);
 });
 
+router.post("/feedback", function (req, res) {
+    usuarioController.feedback(req, res);
+});
+
+router.post("/mudarSenha", function (req, res) {
+    usuarioController.mudarSenha(req, res);
+});
+
+
+
 module.exports = router;

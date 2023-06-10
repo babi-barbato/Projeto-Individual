@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menu Hambúrguer</title>
+</head>
+<style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  padding: 10px;
+}
+
+.menu-toggle {
+  display: block;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu li {
+  padding: 10px;
+  background-color: #333;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.menu-toggle:checked ~ .menu {
+  display: block;
+}
+
+.menu-toggle:checked ~ .menu li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.menu-toggle:checked ~ .menu li:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.menu-toggle:checked ~ .menu li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.menu-toggle:checked ~ .menu li:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.menu-toggle:checked ~ .menu li:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+</style>
+<body>
+  <header>
+    <div class="menu-toggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul class="menu">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Sobre</a></li>
+        <li><a href="#">Serviços</a></li>
+        <li><a href="#">Contato</a></li>
+      </ul>
+    </div>
+  </header>
+
+</body>
+</html>

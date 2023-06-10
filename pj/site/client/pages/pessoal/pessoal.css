@@ -1,0 +1,101 @@
+body {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Noto Sans';
+}
+
+.divFormularios {
+    width: 70%;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+
+.divForms {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #fbfbfb;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.203);
+    width: 40%;
+}
+
+.divTituloForm label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffff;
+}
+
+.divInputs input {
+    width: 85%;
+    border: none;
+    padding: 8px 8px;
+    border-radius: 6px;
+    box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.203);
+    font-size: 1.0rem;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.divInputs label {
+    font-size: 20px;
+    width: 85%;
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mudar {
+    width: 90%;
+    border: none;
+    padding: 8px 8px;
+    border-radius: 6px;
+    box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.203);
+    margin-bottom: 20px;
+    margin-top: 5px;
+    font-size: 17px;
+    position: relative;
+    color: #fff;
+    background-color: #176a0f;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+}
+
+.divTituloForm {
+    width: 100%;
+    background-color: #d70e00;
+    padding: 8px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.divInputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+
+.divTituloForm .bi{
+    color: white;
+    font-size: 35px;
+}

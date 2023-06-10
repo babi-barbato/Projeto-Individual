@@ -25,11 +25,19 @@ numero int,
 imagem varchar(50),
 texto varchar(2000)
 );
+create table feedback (
+idFeedback int primary key auto_increment,
+nomeFeedback varchar(50),
+emailFeedback varchar(50),
+comentario varchar(1000)
+);
 
+use palmeiras;
 -- Selects
 select * from usuario;
 select * from telefones;
 select * from jogador;
+select * from feedback;
 
 -- Inserindo Atacantes
 insert into jogador values (null, 'Rony', 'Atacante', 'M','Destro','1.66','10','jogador-rony.png', '       O rápido e aguerrido Ronielson saiu da pequena Magalhães Barata, para ser um dos principais nomes do Palmeiras na caminhada dos títulos da Libertadores de 2020 e 2021. Superando a desconfiança inicial e a cobrança de uma exigente torcida, o atacante foi o artilheiro do Verdão no torneio sul-americano nas duas conquistas.');

@@ -39,4 +39,9 @@ router.post("/buscarJogador", function (req, res) {
     usuarioController.buscarJogador(req, res);
 });
 
+router.post("/pegarJogadores", function (req, res) {
+    usuarioController.pegarJogadores(req, res);
+});
+
+
 module.exports = router;

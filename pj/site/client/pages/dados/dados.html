@@ -57,7 +57,7 @@
     var vetorJogador = []
     var vetorJogadora = []
     var dadosJogador = {
-        labels: ['Rony','Arthur','Dudu','Raphael Veiga','Zé Rafael','Gabriel Menino','Piquerez','Marcos Rocha','Murilo','Gustavo Gómez','Weverton'],
+        labels: ['Rony', 'Arthur', 'Dudu', 'Raphael Veiga', 'Zé Rafael', 'Gabriel Menino', 'Piquerez', 'Marcos Rocha', 'Murilo', 'Gustavo Gómez', 'Weverton'],
         datasets: [{
             data: vetorJogador,
             fill: false,
@@ -75,11 +75,11 @@
         type: 'bar',
         data: dadosJogador,
     });
-    
+
     var dadosJogadora = {
-        labels: ['Rony','Arthur','Dudu','Raphael Veiga','Zé Rafael','Gabriel Menino','Piquerez','Marcos Rocha','Murilo','Gustavo Gómez','Weverton'],
+        labels: ['Rony', 'Arthur', 'Dudu', 'Raphael Veiga', 'Zé Rafael', 'Gabriel Menino', 'Piquerez', 'Marcos Rocha', 'Murilo', 'Gustavo Gómez', 'Weverton'],
         datasets: [{
-            data: vetorJogador,
+            data: vetorJogadora,
             fill: false,
             borderColor: '#36a2eb',
             borderWidth: 1,
@@ -93,14 +93,44 @@
 
     const graphJogadora = new Chart(graficoJogadoras, {
         type: 'bar',
-        data: dadosJogador,
+        data: dadosJogadora,
     });
 
     pegarJogadores();
-    pegarJogadoras();
+    // pegarJogadoras();
 
-    function pegarJogadores(){
+    function pegarJogadores() {
+        var sexoVar = 'M'
+        fetch(`/usuarios/pegarJogadores`,
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sexoServer: sexoVar
+                })
+            }).then(function (resposta) {
+                console.log('resposta: ', resposta);
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        console.log(json[0].contar)
+                        vetorJogador.length = 0;
+                        for(var i = 0; i < json.length; i++){
+                            vetorJogador.push(json[i].contar);
+                        }
+                        
+                        graphJogador.update()
+                    });
 
+                } else {
+                    console.log(resposta)
+                    alert('Erro ao achar dados de jogadores.');
+                }
+            }).catch(function (resposta) {
+                console.log('erro: ', resposta);
+            });
+        return false;
     }
 
 </script>

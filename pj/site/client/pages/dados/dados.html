@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="dados.css">
     <link rel="shortcut icon" href="../../img/palmeirasIcon.ico" type="image/x-icon">
-    <title>Pessoal</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dados Gerais</title>
 </head>
 
 <body>
@@ -32,6 +34,34 @@
             <li><a href="../login/login.html">Sair</a></li>
         </ul>
     </div>
+    <div>
+        <canvas id="graficoPessoas"></canvas>
+        <canvas id="graficoJogadores"></canvas>
+    </div>
 </body>
+
 </html>
+
+<script>
+    var dados = {
+        labels: ['a','b'],
+        datasets: [{
+            data: [2,4,4],
+            fill: false,
+            borderColor: '#36a2eb',
+            borderWidth: 1,
+            tension: 0.1,
+            pointRadius: 3,
+            pointBorderWidth: 3,
+            label: 'Umidade',
+            backgroundColor: '#36a2eb'
+        }]
+    }
+
+    const rosquinha = new Chart(graficoPessoas, {
+        type: 'bar',
+        data: dados,
+    });
+    
+</script>
 <script src="../menuLateral.js"></script>

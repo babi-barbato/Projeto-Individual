@@ -31,6 +31,12 @@ router.post("/mudarSenha", function (req, res) {
     usuarioController.mudarSenha(req, res);
 });
 
+router.post("/escolher", function (req, res) {
+    usuarioController.escolher(req, res);
+});
 
+router.post("/buscarJogador", function (req, res) {
+    usuarioController.buscarJogador(req, res);
+});
 
 module.exports = router;

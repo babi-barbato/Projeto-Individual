@@ -72,6 +72,28 @@ function mudarSenha(senha, id, tipo) {
     return database.executar(instrucao);
 }
 
+function escolher(jogador, id) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n funtion escolher():", jogador, id);
+    
+    var instrucao = `
+        UPDATE usuario SET fkJogador = ${jogador} WHERE idUser = ${id};
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarJogador(jogador) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n funtion buscarJogador():", jogador);
+    
+    var instrucao = `
+    SELECT perna,nomeJogador,numero,imagem,altura, count(fkJogador) as contar FROM jogador JOIN usuario ON fkJogador = ${jogador} AND idJogador = ${jogador};
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 module.exports = {
     entrar,
@@ -80,4 +102,6 @@ module.exports = {
     ordemJogadores,
     feedback,
     mudarSenha,
+    escolher,
+    buscarJogador,
 };

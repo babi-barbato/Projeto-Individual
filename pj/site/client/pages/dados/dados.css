@@ -1,0 +1,27 @@
+.divGeral{
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+    gap: 40px;
+}
+body{
+    display: flex;
+    flex-direction: row;
+}
+.divTitulo{
+    color: #176a0f;
+    width: 80%;
+}
+.divGeral > div{
+    width: 80%;
+}
+.divGraficos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

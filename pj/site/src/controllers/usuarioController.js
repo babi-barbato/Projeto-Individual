@@ -170,6 +170,55 @@ function mudarSenha(req, res) {
     }
 }
 
+function escolher(req, res) {
+    var jogador = req.body.jogadorServer;
+    var id = req.body.idServer;
+
+    if (jogador == undefined) {
+        res.status(400).send("JOGADOR TA INDEFINIDO!");
+    } else {
+
+        usuarioModel.escolher(jogador,id)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao mudar senha: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function buscarJogador(req, res) {
+    var jogador = req.body.jogadorServer;
+
+    if (jogador == undefined) {
+        res.status(400).send("JOGADOR TA INDEFINIDO!");
+    } else {
+
+        usuarioModel.buscarJogador(jogador)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao buscar jopgador ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 
 module.exports = {
     entrar,
@@ -179,4 +228,6 @@ module.exports = {
     ordemJogadores,
     feedback,
     mudarSenha,
+    escolher,
+    buscarJogador,
 }

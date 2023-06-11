@@ -186,6 +186,7 @@ nav .aPalmeiras{
 }
 .sidebar ul li {
     margin-bottom: 10px;
+    position: relative;
 }
 .sidebar ul li a {
     color: #fff;

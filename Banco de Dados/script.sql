@@ -1,15 +1,17 @@
 create database palmeiras;
 
 use palmeiras;
-
 -- Criando Tabelas
 create table usuario(
 idUser int primary key auto_increment,
 nome varchar(50),
 email varchar(50),
 fkTelefone INT,
+fkJogador INT,
 senha varchar(50)
 );
+drop table usuario;
+drop table telefones;
 create table telefones (
 idTelefone int primary key auto_increment,
 telefone varchar(50)
@@ -35,6 +37,11 @@ comentario varchar(1000)
 use palmeiras;
 -- Selects
 select * from usuario;
+select count(fkJogador) from usuario where fkJogador = 4;
+SELECT perna,nomeJogador,numero,imagem,altura, count(fkJogador) as contar 
+FROM jogador JOIN usuario ON fkJogador = 3 group by fkJogador;
+
+update usuario set fkJogador = null Where idUser = 1;
 select * from telefones;
 select * from jogador;
 select * from feedback;

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="sidebar">
+    <div class="sidebar" style="height: 180vh;">
         <ul>
             <li style="display: flex; justify-content: space-between;">
                 <div style="display: flex; align-items: center;">
@@ -34,19 +34,32 @@
             <li><a href="../login/login.html">Sair</a></li>
         </ul>
     </div>
-    <div>
-        <canvas id="graficoPessoas"></canvas>
-        <canvas id="graficoJogadores"></canvas>
+    <div class="divGeral">
+        <div class="divTitulo">
+            <h1>Dados Gerais </h1>
+            <hr>
+            <p style="margin-top: 10px;">Aqui você encontra alguns dados referentes ao site.</p>
+        </div>
+        <div class="divGraficos">
+            <h2>Jogadores Favoritos</h2>
+            <canvas id="graficoJogadores"></canvas>
+        </div>
+        <div class="divGraficos">
+            <h2>Jogadoras Favoritas</h2>
+            <canvas id="graficoJogadoras"></canvas>
+        </div>
     </div>
 </body>
 
 </html>
 
 <script>
-    var dados = {
-        labels: ['a','b'],
+    var vetorJogador = []
+    var vetorJogadora = []
+    var dadosJogador = {
+        labels: ['Rony','Arthur','Dudu','Raphael Veiga','Zé Rafael','Gabriel Menino','Piquerez','Marcos Rocha','Murilo','Gustavo Gómez','Weverton'],
         datasets: [{
-            data: [2,4,4],
+            data: vetorJogador,
             fill: false,
             borderColor: '#36a2eb',
             borderWidth: 1,
@@ -58,10 +71,37 @@
         }]
     }
 
-    const rosquinha = new Chart(graficoPessoas, {
+    const graphJogador = new Chart(graficoJogadores, {
         type: 'bar',
-        data: dados,
+        data: dadosJogador,
     });
     
+    var dadosJogadora = {
+        labels: ['Rony','Arthur','Dudu','Raphael Veiga','Zé Rafael','Gabriel Menino','Piquerez','Marcos Rocha','Murilo','Gustavo Gómez','Weverton'],
+        datasets: [{
+            data: vetorJogador,
+            fill: false,
+            borderColor: '#36a2eb',
+            borderWidth: 1,
+            tension: 0.1,
+            pointRadius: 3,
+            pointBorderWidth: 3,
+            label: 'Umidade',
+            backgroundColor: '#36a2eb'
+        }]
+    }
+
+    const graphJogadora = new Chart(graficoJogadoras, {
+        type: 'bar',
+        data: dadosJogador,
+    });
+
+    pegarJogadores();
+    pegarJogadoras();
+
+    function pegarJogadores(){
+
+    }
+
 </script>
 <script src="../menuLateral.js"></script>

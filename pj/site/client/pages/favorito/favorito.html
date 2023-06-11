@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="favorito.css">
+    <link rel="shortcut icon" href="../../img/palmeirasIcon.ico" type="image/x-icon">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Jogador Favorito</title>
+</head>
+
+<body>
+    <div class="sidebar" style="height: 140vh;">
+        <ul>
+            <li style="display: flex; justify-content: space-between;">
+                <div style="display: flex; align-items: center;">
+                    <button class="btnUm"><i class="bi bi-person-circle"></i></button>
+                    <p>Logado</p>
+                </div>
+                <button class="btnUm" id="toggleBtn"><i class="bi bi-list"></i></button>
+            </li>
+            <li>
+                <hr>
+            </li>
+            <li><a href="../pessoal/pessoal.html">Pessoal</a></li>
+            <li><a href="../favorito/favorito.html">Jogador Favorito</a></li>
+            <li><a href="../dados/dados.html">Dados Gerais</a></li>
+            <li><a href="../jogos/jogos.html">Jogos</a></li>
+            <li></li>
+            <li></li>
+            <li><a href="../login/login.html">Sair</a></li>
+        </ul>
+    </div>
+    <div class="divGeral" id="divGeral">
+    </div>
+</body>
+
+</html>
+<script>
+    qualForm()
+
+    function qualForm() {
+        if (sessionStorage.FK_FAVORITO != 'null') {
+            buscarJogador();
+        } else {
+            divGeral.innerHTML = '';
+            divGeral.innerHTML += `
+            <div class="divTitulo">
+                <h1>Jogador Favorito</h1>
+                <hr>
+                <p style="margin-top: 10px;">Aqui você vê dados do seu jogador ou jogadora favorito(a).</p>
+            </div>
+            <div id="divFormulario">
+                <div class="divForms">
+                    <div class="divTituloForm">
+                        <label>Escolher Jogador(a) Favorito(a)</label>
+                    </div>
+                    <div class="divInputs">
+                        <div>
+                            <label>Escolha o Gênero do Jogador</label>
+                            <br>
+                            <select name="" id="selectSexo" onchange="genero()">
+                                <option value="N">Escolher</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                            </select>
+                        </div>
+                        <div id="selectJogador">
+                            <label>Escolha o Jogador</label>
+                            <br>                        
+                            <select id="iptJogador" disabled>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <button onclick="escolher()">Escolher</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+    }
+
+    function buscarJogador() {
+
+        fetch(`/usuarios/buscarJogador`,
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    jogadorServer: sessionStorage.FK_FAVORITO,
+                })
+            }).then(function (resposta) {
+                console.log('resposta: ', resposta);
+                if (resposta.ok) {
+
+                    resposta.json().then(json => {
+
+                        divGeral.innerHTML = '';
+                        divGeral.innerHTML = `
+                            <div class="divTitulo">
+                                <h1>Jogador Favorito</h1>
+                                <hr>
+                                <p style="margin-top: 10px;">Aqui você vê dados do seu jogador ou jogadora favorito(a).</p>
+                            </div>
+                            <div class="divJogador">
+                                <div class="divDireita">
+                                    <img src="../../img/quiz/${json[0].imagem}" width="60%">
+                                </div>
+                                <div class="divEsquerda">
+                                    <h1>${json[0].nomeJogador}</h1>
+                                    <div>
+                                        <img src="../../img/camisa.png" alt="">
+                                        <h2>N° ${json[0].numero}</h2>
+                                    </div>
+                                    <div>
+                                        <img src="../../img/chuteira.png" alt="">
+                                        <h2>${json[0].perna}</h2>
+                                    </div>
+                                    <div>
+                                        <img src="../../img/tamanho.png" alt="">
+                                        <h2>${json[0].altura}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divBaixo">
+                                <div class="divPessoas">
+                                    <h2>Pesoas que gostam do mesmo jogador</h2>
+                                    <div>
+                                        <h2>${json[0].contar}</h2>
+                                    </div>
+                                </div>
+                                <div id="divFormulario">
+                                    <div class="divForms">
+                                        <div class="divTituloForm">
+                                            <label>Mudar Jogador(a) Favorito(a)</label>
+                                        </div>
+                                        <div class="divInputs">
+                                            <div>
+                                                <label>Escolha o Gênero do Jogador</label>
+                                                <br>
+                                                <select name="" id="selectSexo" onchange="genero()">
+                                                    <option value="N">Escolher</option>
+                                                    <option value="M">Masculino</option>
+                                                    <option value="F">Feminino</option>
+                                                </select>
+                                            </div>
+                                            <div id="selectJogador">
+                                                <label>Escolha o Jogador</label>
+                                                <br>
+                                                <select id="iptJogador" disabled>
+                                                    <option value=""></option>
+                                                </select>
+                                            </div>
+                                            <button onclick="escolher()">Mudar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                    });
+                } else {
+                    console.log(resposta)
+                    alert('Erro ao adicionar jogador favorito.');
+                }
+            }).catch(function (resposta) {
+                console.log('erro: ', resposta);
+            });
+        return false;
+
+
+    }
+
+    function escolher() {
+
+        var jogadorVar = document.getElementById('iptJogador');
+        var teste = jogadorVar.value
+
+        if (teste == '') {
+            alert("Escolha um Jogador")
+            return false;
+        }
+
+        fetch(`/usuarios/escolher`,
+            {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    jogadorServer: teste,
+                    idServer: sessionStorage.ID_USUARIO,
+                })
+            }).then(function (resposta) {
+                console.log('resposta: ', resposta);
+                if (resposta.ok) {
+                    alert("Jogador Favorito Adicionado com sucesso");
+                    sessionStorage.FK_FAVORITO = teste;
+                    window.location = "../pessoal/pessoal.html";
+                } else {
+                    console.log(resposta)
+                    alert('Erro ao adicionar jogador favorito.');
+                }
+            }).catch(function (resposta) {
+                console.log('erro: ', resposta);
+            });
+        return false;
+
+    }
+
+    function genero() {
+        var sexo = document.getElementById('selectSexo').value;
+
+        if (sexo == 'M') {
+            selectJogador.innerHTML = '';
+            selectJogador.innerHTML = `
+                <label>Escolha o Jogador</label>
+                <br>                        
+                <select id="iptJogador" name="">
+                    <option value="1">Rony</option>
+                    <option value="3">Dudu</option>
+                    <option value="2">Arthur</option>
+                    <option value="4">Raphael Veiga</option>
+                    <option value="5">Zé Rafael</option>
+                    <option value="6">Gabriel Menino</option>
+                    <option value="7">Piquerez</option>
+                    <option value="8">Marcos Rocha</option>
+                    <option value="9">Murilo</option>
+                    <option value="10">Gustavo Gómez</option>
+                    <option value="11">Weverton</option>
+                </select>
+            `;
+        } else if (sexo == 'F') {
+            selectJogador.innerHTML = '';
+            selectJogador.innerHTML = `
+                <label>Escolha o Jogador</label>
+                <br>                        
+                <select name="">
+                    <option value="">Zaneratto</option>
+                    <option value="">Yamila</option>
+                    <option value="">Duda</option>
+                </select>
+            `;
+        } else if (sexo == 'N') {
+            selectJogador.innerHTML = '';
+            selectJogador.innerHTML = `
+                <label>Escolha o Jogador</label>
+                <br>                        
+                <select name="" disabled>
+                    <option value=""></option>
+                </select>
+            `;
+        }
+    }
+
+    function gerar() {
+        divGeral.innerHTML = `
+        <div class="divTitulo">
+            <h1>Jogador Favorito</h1>
+            <hr>
+            <p style="margin-top: 10px;">Aqui você vê dados do seu jogador ou jogadora favorito(a).</p>
+        </div>
+        <div class="divJogador">
+            <div class="divDireita">
+                <img src="../../img/quiz/jogador-dudu.png" width="60%">
+            </div>
+            <div class="divEsquerda">
+                <h1></h1>
+                <div>
+                    <img src="../../img/camisa.png" alt="">
+                    <h2>1.66 m</h2>
+                </div>
+                <div>
+                    <img src="../../img/chuteira.png" alt="">
+                    <h2>1.66 m</h2>
+                </div>
+                <div>
+                    <img src="../../img/tamanho.png" alt="">
+                    <h2>1.66 m</h2>
+                </div>
+            </div>
+        </div>
+        <div class="divBaixo">
+            <div class="divPessoas">
+                <h2>Pesoas que gostam do mesmo jogador</h2>
+                <div>
+                    <h2>18</h2>
+                </div>
+            </div>
+            <div id="divFormulario">
+                <div class="divForms">
+                    <div class="divTituloForm">
+                        <label>Mudar Jogador(a) Favorito(a)</label>
+                    </div>
+                    <div class="divInputs">
+                        <div>
+                            <label>Escolha o Gênero do Jogador</label>
+                            <br>
+                            <select name="" id="selectSexo" onchange="genero()">
+                                <option value="N">Escolher</option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                            </select>
+                        </div>
+                        <div id="selectJogador">
+                            <label>Escolha o Jogador</label>
+                            <br>
+                            <select id="iptJogador" disabled>
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <button onclick="escolher()">Mudar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+    }
+</script>

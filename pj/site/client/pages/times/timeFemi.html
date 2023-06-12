@@ -36,10 +36,10 @@
     </nav>
     <div id="divOrdem">
         <h1>Ordenar por:</h1>
-        <button class="botaoVerde" onclick="ordemJogadores('nomeJogador')">Nome</button>
-        <button class="botaoBranco" onclick="ordemJogadores('numero')">Camisa</button>
-        <button class="botaoBranco" onclick="ordemJogadores('altura')">Altura</button>
-        <button class="botaoBranco" onclick="ordemJogadores('idJogador')">Posicao</button>
+        <button id="btnNome" class="botaoBranco" onclick="ordemJogadores('nomeJogador'), cor('#btnNome')">Nome</button>
+        <button id="btnCamisa" class="botaoBranco" onclick="ordemJogadores('numero'), cor('#btnCamisa')">Camisa</button>
+        <button id="btnAltura" class="botaoBranco" onclick="ordemJogadores('altura'), cor('#btnAltura')">Altura</button>
+        <button id="btnPosicao" class="botaoVerde" onclick="ordemJogadores('idJogador'), cor('#btnPosicao')">Posicao</button>
     </div>
     <div id="divGeral"></div>
 </body>
@@ -48,6 +48,22 @@
 <script>
     var verifica = 1;
     var classe = '';
+
+    function cor(num){
+        btnNome.classList.remove("botaoVerde");
+        btnCamisa.classList.remove("botaoVerde");
+        btnAltura.classList.remove("botaoVerde");
+        btnPosicao.classList.remove("botaoVerde");
+        
+        btnNome.classList.add("botaoBranco");
+        btnCamisa.classList.add("botaoBranco");
+        btnAltura.classList.add("botaoBranco");
+        btnPosicao.classList.add("botaoBranco");
+
+        var classes = document.querySelector(num);
+        classes.classList.remove("botaoBranco")
+        classes.classList.add("botaoVerde");
+    }
 
     ordemJogadores('idJogador');
 

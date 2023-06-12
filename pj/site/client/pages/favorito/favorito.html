@@ -82,6 +82,7 @@
         }
     }
 
+    var tmpx = '';
     function buscarJogador() {
 
         fetch(`/usuarios/buscarJogador`,
@@ -98,6 +99,12 @@
                 if (resposta.ok) {
 
                     resposta.json().then(json => {
+                        tmpx = 0;
+                        if(json[0].sexo == 'F'){
+                            tmpx = '90%'
+                        }else{
+                            tmpx = '60%'
+                        }
 
                         divGeral.innerHTML = '';
                         divGeral.innerHTML = `
@@ -108,7 +115,7 @@
                             </div>
                             <div class="divJogador">
                                 <div class="divDireita">
-                                    <img src="../../img/quiz/${json[0].imagem}" width="60%">
+                                    <img src="../../img/quiz/${json[0].imagem}" width="${tmpx}">
                                 </div>
                                 <div class="divEsquerda">
                                     <h1>${json[0].nomeJogador}</h1>
@@ -200,7 +207,7 @@
                 if (resposta.ok) {
                     alert("Jogador Favorito Adicionado com sucesso");
                     sessionStorage.FK_FAVORITO = teste;
-                    window.location = "../pessoal/pessoal.html";
+                    window.location = "../favorito/favorito.html";
                 } else {
                     console.log(resposta)
                     alert('Erro ao adicionar jogador favorito.');
@@ -239,10 +246,18 @@
             selectJogador.innerHTML = `
                 <label>Escolha o Jogador</label>
                 <br>                        
-                <select name="">
-                    <option value="">Zaneratto</option>
-                    <option value="">Yamila</option>
-                    <option value="">Duda</option>
+                <select id="iptJogador" name="">
+                    <option value="12">Yamila</option>
+                    <option value="13">Bia Zaneratto</option>
+                    <option value="14">Amanda Gutierres</option>
+                    <option value="15">Benítez</option>
+                    <option value="16">Duda Santos</option>
+                    <option value="17">Dudinha</option>
+                    <option value="18">Katrine</option>
+                    <option value="19">Bruna Calderan</option>
+                    <option value="20">Sorriso</option>
+                    <option value="21">Flávia</option>
+                    <option value="22">Alicia</option>
                 </select>
             `;
         } else if (sexo == 'N') {
@@ -255,69 +270,5 @@
                 </select>
             `;
         }
-    }
-
-    function gerar() {
-        divGeral.innerHTML = `
-        <div class="divTitulo">
-            <h1>Jogador Favorito</h1>
-            <hr>
-            <p style="margin-top: 10px;">Aqui você vê dados do seu jogador ou jogadora favorito(a).</p>
-        </div>
-        <div class="divJogador">
-            <div class="divDireita">
-                <img src="../../img/quiz/jogador-dudu.png" width="60%">
-            </div>
-            <div class="divEsquerda">
-                <h1></h1>
-                <div>
-                    <img src="../../img/camisa.png" alt="">
-                    <h2>1.66 m</h2>
-                </div>
-                <div>
-                    <img src="../../img/chuteira.png" alt="">
-                    <h2>1.66 m</h2>
-                </div>
-                <div>
-                    <img src="../../img/tamanho.png" alt="">
-                    <h2>1.66 m</h2>
-                </div>
-            </div>
-        </div>
-        <div class="divBaixo">
-            <div class="divPessoas">
-                <h2>Pesoas que gostam do mesmo jogador</h2>
-                <div>
-                    <h2>18</h2>
-                </div>
-            </div>
-            <div id="divFormulario">
-                <div class="divForms">
-                    <div class="divTituloForm">
-                        <label>Mudar Jogador(a) Favorito(a)</label>
-                    </div>
-                    <div class="divInputs">
-                        <div>
-                            <label>Escolha o Gênero do Jogador</label>
-                            <br>
-                            <select name="" id="selectSexo" onchange="genero()">
-                                <option value="N">Escolher</option>
-                                <option value="M">Masculino</option>
-                                <option value="F">Feminino</option>
-                            </select>
-                        </div>
-                        <div id="selectJogador">
-                            <label>Escolha o Jogador</label>
-                            <br>
-                            <select id="iptJogador" disabled>
-                                <option value=""></option>
-                            </select>
-                        </div>
-                        <button onclick="escolher()">Mudar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        `;
     }
 </script>

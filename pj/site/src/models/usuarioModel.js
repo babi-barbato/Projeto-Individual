@@ -87,7 +87,7 @@ function buscarJogador(jogador) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n funtion buscarJogador():", jogador);
     
     var instrucao = `
-    SELECT perna,nomeJogador,numero,imagem,altura, count(fkJogador) as contar FROM jogador JOIN usuario ON fkJogador = ${jogador} AND idJogador = ${jogador};
+    SELECT perna,nomeJogador,numero,imagem,altura,sexo, count(fkJogador) as contar FROM jogador JOIN usuario ON fkJogador = ${jogador} AND idJogador = ${jogador};
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucao);
